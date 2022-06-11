@@ -1,0 +1,322 @@
+/* ______________GERAL______________ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*diz q a caixa é medido pela borda dela e não pelo conteudo*/
+}
+/*obs: para procurar algo selecione: ctrl + f e pesquise o nome*/
+:root {
+
+    --primary-color: hsl(170, 100%, 26%);
+    --headline: hsl(210, 11%, 15%);
+    --paragraph: hsl(210, 9%, 31%);
+
+    --brand-beige: hsl(39, 100%, 97%);
+    --brand-light:  hsl(148, 23%, 89%);
+    --bg-light: hsl(180, 14%, 97%);
+
+    font-size: 62.5%; /*1rem = 10px */
+    --nav-height: 7.2rem;
+}
+
+html {
+    scroll-behavior: smooth; /*smooth = suave*/
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: 'DM Sans';
+    font-size: 1.6rem;
+
+    text-align: center;
+
+    overflow: overlay; /*não conta o espaço oculpado pelo scroll da página*/
+
+    background-color: var(--bg-light);
+}
+.wrapper {
+    width: 37.5rem;
+    margin-right: auto;
+    margin-left: auto;
+    padding-inline: 2.4;
+    /*margin-right: auto; e margin-left: auto; = margin-inline: auto*/
+}
+
+section {
+    padding-block: 10rem;
+}
+
+/* _____________HOME____________ */
+#home {
+    padding-top: calc(4.1rem + var(--nav-height));
+   
+}
+#home::before {
+    content: "";
+    width: 100%;
+    height: calc(108rem + var(--nav-height));
+    background-color: var(--brand-light);
+    display: block;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+#home h4 {
+    font-family: 1.4rem;
+    color: var(--primary-color);
+    margin-top: 1.6rem;
+}
+#home h1 {
+    font-size: 3.4rem;
+    color: var(--headline);
+    line-height: 130%;
+
+    margin-bottom: 2.4rem;
+}
+#home p {
+    font-size: 1.8rem;
+    line-height: 150%;
+    font-weight: 400;
+    color: var(--paragraph);
+   
+   
+}
+#home button{
+    background: var(--primary-color);
+    border: none;
+    border-radius: 4rem;
+    
+    height: 6.2rem;
+    width: 26.3rem;
+
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+
+    margin-right: auto;
+    margin-left: auto;
+}
+#home img {
+    width: 26.2rem;
+    display: block;
+    margin-inline: auto;
+    object-position: 0 2rem;
+}
+
+#home .stat {
+    width: 32.7rem;
+   
+    padding-block: 4rem;
+    margin-inline: auto;
+
+    background-color: var(--brand-beige);
+    border: 1px solid var(--brand-light);
+    border-radius: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    
+} 
+.stat h3 {
+    font-size: 4.8rem;
+    color: var(--headline);
+    line-height: 130%;
+    margin-bottom: 0.4rem;
+}
+.stat p {
+  margin: 0;
+  color: var(--primary-color);
+  font-size: 1.6rem;
+  line-height: 150%;
+}
+/* _____________NAVIGATION_________ */
+nav {
+   display: flex;
+  
+   height: var(--nav-height);
+
+   position: fixed;
+   top: 0;
+   left: 50%;
+   transform: translateX(-50%);
+
+   z-index: 100;
+}
+nav .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+nav.scroll {
+    background: var(--primary-color);
+    width: 100vw;
+}
+nav.scroll svg:nth-child(1) path {
+    fill: white;
+}
+nav.scroll button path {
+    stroke: white;
+}
+nav button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+/* _____________MENU-EXPANDED_________ */
+body.menu-expanded > :not(nav) {
+    display: none;
+} /*todos de primeiro nível(no header) vão sumir exceto o nav
+:not(nav) para selecionar todos usa-se o * no lugar do :not(nav)
+body.menu-expanded > * {} */
+.open-menu {
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    left: 311px;
+    top: 16px;
+}
+.menu, 
+.close-menu,
+body.menu-expanded .open-menu {
+    opacity: 0; /*deixa invisivel os itens do menu*/
+    visibility: hidden; /*deixa não clicaveis os itens do menu*/
+}
+body.menu-expanded {
+    overflow: hidden; /*tira os scroll e não deixa ir nem para baixo e nem para os lados*/
+}
+body.menu-expanded .menu,
+body.menu-expanded .close-menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu {
+    transform: translateY(100%); /*joga a parte da página para baixo já que esta no eixo Y e quanto maior o numero indicado mais pra baixo ficara*/
+}
+
+body.menu-expanded .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: var(--primary-color);
+
+    height: 100vw;
+    width: 100vh;
+
+    padding-top: var(--nav-height);
+
+    transform: translateY(0); /*joga oq ta na tela pra baixo da visualização*/
+    transition: transform 300ms;
+    /* transition: opacity 700ms; faz a animação da imagem do menu aparecendo çentamente dependendo do ms */
+}
+body.menu-expanded nav {
+    position: relative; /*tira o posicionamento fixo e bota outro posicionamento relativo menos o fixo*/
+}
+.menu ul:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    gap: 4.8rem;
+
+    margin-top: 6rem;
+
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 3.1rem;
+}
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+}
+.menu .button {
+    background-color: #fff; /*bota a cor de fundo do botão*/
+    color: var(--primary-color); /*bota a cor do conteudo definido pela variavel la em cima*/
+    display: inline-block; 
+    padding: 1.6rem 3.2rem; /*1.6rem aumenta a altura do botão e o 3.2rem a largura*/
+    margin-top: 4.8rem; /*aumenta a distancia de cima do botão*/
+    margin-bottom: 8rem; /*aumenta a distancia de baixo do botão*/
+    
+    font-size: 1.8rem; /*é  tamanho da fonte da letra*/
+    line-height: 2.3rem; /*é o espaçamento entre as linhas*/
+    font-weight: 700; /*é como se fosse a grossura do negrito do conteudo*/
+    text-transform: uppercase; /*para deixar o texto todo em maiusculo ou lowercase para todo em minusculo*/
+    text-decoration: none;
+
+    border-radius: 4rem; /*a borda do botão*/
+}
+.social-links {
+    display: flex; /*elementos um do lado do outro*/
+    align-items: center; /*alinhamento dos itens centrais*/
+    justify-content: center; /*botar os itens no centro*/
+    gap: 3.2rem; /*espaçamento de um item para outro da lista <-->*/
+    list-style-type: none;
+}
+
+.button,
+.wrapper{
+    gap: 9rem;
+}
+
+
+body.menu-expanded .logo,
+body.menu-expanded button {
+    position: relative;
+    z-index: 10;
+}
+body.menu-expanded .logo path { /*cada path tem seu fill que é a cor dele, aqui ele bota uma rota com tag e classe até chegar no path para modificar o fill pela cor desejada*/
+    fill: white;
+}
+body.menu-expanded button path {
+    stroke: white;
+}
+/* ________________services_______________________ */
+
+#services header h4 {
+    font-size: 1.4rem;
+    line-height: 15rem;
+    letter-spacing: 0.08rem;
+
+    color: var(--primary-color);
+    
+    text-transform: uppercase;
+
+    margin-bottom: 1.6rem;
+}
+#services header h2 {
+    font-size: 3rem;
+    line-height: 3.9rem;
+    
+    color: var(--headline);
+
+    margin-bottom: 6rem;
+}
+#services .card {
+    padding: 2.4rem; /* espaçamento do conteudo para dentro do quadrado*/
+    text-align: left; /*indica de onde ta começando o texto*/
+
+    background: white;
+
+    border: 1px solid var(--brand-light);
+    border-radius: 0.6rem;
+}
+#services .card h3 {
+    margin-block: 1.6rem; /*margin-block vai pegar o conteudo de cima e o de embaixo*/
+}
+#services .cards {
+    display: flex; /*o display dod tipo flex é o tipo de display q mexe nos filhos, ou seja, vai mexer nas classes .card que fica dentro de .cards*/
+    flex-direction: column; /*bota um abaixo do outro*/
+    /*se voltou a ser um abaixo do outro usamos ele para destravar o gap que bota o espaçamento das nas classes filhas q são as .card */
+    gap: 3.2rem;
+}
