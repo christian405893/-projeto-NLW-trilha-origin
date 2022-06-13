@@ -13,6 +13,9 @@
 
     --brand-beige: hsl(39, 100%, 97%);
     --brand-light:  hsl(148, 23%, 89%);
+    --brand-dark: hsl(170, 100%, 14%);
+
+
     --bg-light: hsl(180, 14%, 97%);
 
     font-size: 62.5%; /*1rem = 10px */
@@ -41,16 +44,122 @@ body {
 }
 .wrapper {
     width: 37.5rem;
-    margin-right: auto;
-    margin-left: auto;
-    padding-inline: 2.4;
+    margin-inline: auto;
+    padding: 2.4rem;
     /*margin-right: auto; e margin-left: auto; = margin-inline: auto*/
+}
+
+/*ta faltando um ul aqui*/
+
+img {
+    max-width: 100%; /*deixa a imagem respeitando a caixa que ela está contendo*/
 }
 
 section {
     padding-block: 10rem;
 }
+section header h4 {
+    font-family: 1.4rem;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 150%;
+    color: var(--primary-color);
+    
+    text-transform: uppercase;
 
+    margin-top: 1.6rem;    
+}
+
+section header h2 {
+    font-size: 3rem;
+    line-height: 3.9rem;
+    
+    color: var(--headline);
+}
+
+section header h1 {
+
+    font-size: 3.4rem;
+    color: var(--headline);
+    line-height: 130%;
+    
+    margin-bottom: 2.4rem;
+}
+
+.button {
+    background: var(--primary-color);
+
+    border: none;
+    border-radius: 4rem;
+    
+    margin-bottom: 6rem;
+    /* height: 6.2rem;
+    width: 26.3rem; */  /*melhor usar o padding pois ele adapta a largura e a altura de preenchimento*/
+
+    padding: 1.6rem 3.2rem;
+    width: fit-content; /*a largura é adaptada ao conteudo*/
+
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+
+    margin-right: auto;
+    margin-left: auto;
+
+    text-decoration: none; /*para tirar a linha de baixo do conteudo do botão*/
+}
+
+.button:hover {
+    background-color: var(--brand-dark);
+
+    transition: 200ms;
+}
+.social-links {
+    display: flex; /*elementos um do lado do outro*/
+    align-items: center; /*alinhamento dos itens centrais*/
+    justify-content: center; /*botar os itens no centro*/
+    gap: 3.2rem; /*espaçamento de um item para outro da lista <-->*/
+    list-style-type: none; /*tira os pontos da li*/
+}
+
+/* _____________NAVIGATION_________ */
+nav {
+    display: flex;
+   
+    height: var(--nav-height);
+ 
+    position: fixed;
+    top: 0;
+    width: 100vw;
+ 
+    z-index: 100;
+ }
+ nav .wrapper {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+ nav.scroll {
+     background: var(--primary-color);
+    
+ }
+ nav.scroll .logo path {
+     fill: white;
+ }
+ nav.scroll button path {
+     stroke: white;
+ }
+ nav button {
+     background: none;
+     border: none;
+     cursor: pointer;
+ }
 /* _____________HOME____________ */
 #home {
     padding-top: calc(4.1rem + var(--nav-height));
@@ -68,18 +177,11 @@ section {
     left: 0;
     z-index: -1;
 }
-#home h4 {
-    font-family: 1.4rem;
-    color: var(--primary-color);
-    margin-top: 1.6rem;
-}
-#home h1 {
-    font-size: 3.4rem;
-    color: var(--headline);
-    line-height: 130%;
 
-    margin-bottom: 2.4rem;
+#home .button {
+    margin-inline: auto; /*deixa o butão no centro de acordo com o espaçamento da página*/
 }
+
 #home p {
     font-size: 1.8rem;
     line-height: 150%;
@@ -89,25 +191,7 @@ section {
    
 }
 #home button{
-    background: var(--primary-color);
-    border: none;
-    border-radius: 4rem;
     
-    height: 6.2rem;
-    width: 26.3rem;
-
-    color: white;
-    font-size: 1.4rem;
-    font-weight: 700;
-    text-transform: uppercase;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.6rem;
-
-    margin-right: auto;
-    margin-left: auto;
 }
 #home img {
     width: 26.2rem;
@@ -142,42 +226,9 @@ section {
   font-size: 1.6rem;
   line-height: 150%;
 }
-/* _____________NAVIGATION_________ */
-nav {
-   display: flex;
-  
-   height: var(--nav-height);
-
-   position: fixed;
-   top: 0;
-   left: 50%;
-   transform: translateX(-50%);
-
-   z-index: 100;
-}
-nav .wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-nav.scroll {
-    background: var(--primary-color);
-    width: 100vw;
-}
-nav.scroll svg:nth-child(1) path {
-    fill: white;
-}
-nav.scroll button path {
-    stroke: white;
-}
-nav button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
 /* _____________MENU-EXPANDED_________ */
 body.menu-expanded > :not(nav) {
-    display: none;
+    visibility: hidden;
 } /*todos de primeiro nível(no header) vão sumir exceto o nav
 :not(nav) para selecionar todos usa-se o * no lugar do :not(nav)
 body.menu-expanded > * {} */
@@ -222,9 +273,8 @@ body.menu-expanded .menu {
     transition: transform 300ms;
     /* transition: opacity 700ms; faz a animação da imagem do menu aparecendo çentamente dependendo do ms */
 }
-body.menu-expanded nav {
-    position: relative; /*tira o posicionamento fixo e bota outro posicionamento relativo menos o fixo*/
-}
+   /* position: relative; tira o posicionamento fixo e bota outro posicionamento relativo menos o fixo*/
+
 .menu ul:nth-child(1) {
     display: flex;
     flex-direction: column;
@@ -256,18 +306,12 @@ body.menu-expanded nav {
 
     border-radius: 4rem; /*a borda do botão*/
 }
-.social-links {
-    display: flex; /*elementos um do lado do outro*/
-    align-items: center; /*alinhamento dos itens centrais*/
-    justify-content: center; /*botar os itens no centro*/
-    gap: 3.2rem; /*espaçamento de um item para outro da lista <-->*/
-    list-style-type: none;
-}
 
-.button,
+
+/* .button,
 .wrapper{
     gap: 9rem;
-}
+} */
 
 
 body.menu-expanded .logo,
@@ -283,25 +327,7 @@ body.menu-expanded button path {
 }
 /* ________________services_______________________ */
 
-#services header h4 {
-    font-size: 1.4rem;
-    line-height: 15rem;
-    letter-spacing: 0.08rem;
 
-    color: var(--primary-color);
-    
-    text-transform: uppercase;
-
-    margin-bottom: 1.6rem;
-}
-#services header h2 {
-    font-size: 3rem;
-    line-height: 3.9rem;
-    
-    color: var(--headline);
-
-    margin-bottom: 6rem;
-}
 #services .card {
     padding: 2.4rem; /* espaçamento do conteudo para dentro do quadrado*/
     text-align: left; /*indica de onde ta começando o texto*/
@@ -311,6 +337,9 @@ body.menu-expanded button path {
     border: 1px solid var(--brand-light);
     border-radius: 0.6rem;
 }
+#services header h2 {
+    margin-bottom: 6rem;
+}
 #services .card h3 {
     margin-block: 1.6rem; /*margin-block vai pegar o conteudo de cima e o de embaixo*/
 }
@@ -319,4 +348,89 @@ body.menu-expanded button path {
     flex-direction: column; /*bota um abaixo do outro*/
     /*se voltou a ser um abaixo do outro usamos ele para destravar o gap que bota o espaçamento das nas classes filhas q são as .card */
     gap: 3.2rem;
+}
+/* __________________ABOUT_____________________ */
+#about {
+    text-align: left;
+    background-color: var(--brand-beige);
+}
+section.content p {
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 150%;
+
+    color: var(--paragraph);
+}
+#about header h2 {
+    margin-bottom: 2.4rem;
+}
+#about .content p {
+    margin-top: 2.4rem;
+    margin-bottom: 6rem;
+}
+/* __________________CONTACT_____________________ */
+
+#about {
+    text-align: left;
+
+}
+#contact header {
+    margin-bottom: 3.2rem;
+}
+#contact ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+
+    margin-bottom: 3.2rem;
+}
+#contact ul li { /*caminho de tag para o estilo da localizacao e o e-mail*/
+    display: flex; /*para liberar o align items*/
+    align-items: center; /*para alinhar os itens*/
+    gap: 0.8rem; /*para separa o item do outro*/
+}
+/* ____________________FOOTER___________________ */
+
+footer {
+    background-color: var(--primary-color);
+    padding-block: 6rem; /*espaço em cima e embaixo*/
+
+    text-align: left;
+
+    color: white;
+}
+footer .logo {
+   /* diplay-inline nao aceita margin-top e margin-bottom e não aceita width e height*/
+   display: inline-block;
+   margin-bottom: 2.4rem;
+}
+footer .logo svg {
+    width: 23.6rem;
+    height: 3.1rem;
+} 
+footer .logo path{
+    fill: white;
+}
+
+footer p {
+    color: var(--brand-beige);
+    line-height: 2;
+
+    margin-bottom: 3.2rem;
+}
+footer .social-links {
+    justify-content: flex-start; /*ele ta pegando os links e deixando no começo mais para a esquerda*/
+}
+/* ____________________BACK TO TOP___________________ */
+#backToTopButton {
+   position: fixed; /*bota isso aqui para liberar as outras propriedades de baixo*/
+   bottom: 1rem;
+   right: 2.5rem;
+
+   opacity: 0;
+   visibility: hidden;
+}
+#backToTopBackButton.show {
+    opacity: 1;
+    visibility: visible;
 }

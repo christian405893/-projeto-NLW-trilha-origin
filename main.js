@@ -22,7 +22,11 @@ ScrollReveal({
   #home .stats,
   #services,
   #services header,
-  #services .card`)
+  #services .card
+  #about,
+  #about header,
+  #about .content`)
+//   #contact .content n funciona depois rever
 //pode usar o '' no .reveal(`#home, #home img, #home .stats, #home #services`)
 // porém para poder realizar quebras de linhas só pode com o `` template strings
 // boa prática usando o camelCase: usando classList ao invés
