@@ -190,9 +190,7 @@ nav {
    
    
 }
-#home button{
-    
-}
+
 #home img {
     width: 26.2rem;
     display: block;
@@ -430,7 +428,7 @@ footer .social-links {
    opacity: 0;
    visibility: hidden;
 }
-#backToTopBackButton.show {
+#backToTopButton.show {
     opacity: 1;
     visibility: visible;
 }
