@@ -1,5 +1,7 @@
+window.addEventListener('scroll', onScroll )
+// vai executar a função que ta ouvindo a função "onScroll" e vai adicionar a classe 'scroll'
 var navigation = document.getElementById('navigation')
-
+onScroll()
 function onScroll() {
     showNavOnScroll()
     showBackToTopButtonOnScroll()
@@ -20,7 +22,9 @@ function showNavOnScroll() {
 // o scroll chegar ser maior que 500
 
 function showBackToTopButtonOnScroll() {
-    if (scrollY > 3500) {
+    console.log(scrollY) 
+    //e vai no console.log do devtools para saber o numero do scroll do mouse
+    if (scrollY > 730) {
         backToTopButton.classList.add('show')
     } else {
         backToTopButton.classList.remove('show')
@@ -34,6 +38,8 @@ console.log(scrollY)
 function openMenu() {
     document.body.classList.add('menu-expanded')
 }
+// função para fazer o menu sumir selecionando o x
+
 function closeMenu() {
     document.body.classList.remove('menu-expanded')
 }
